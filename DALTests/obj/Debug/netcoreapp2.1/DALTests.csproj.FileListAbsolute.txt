@@ -1,5 +1,11 @@
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.deps.json
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.runtimeconfig.json
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.runtimeconfig.dev.json
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.dll
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.pdb
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\BLL.dll
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DAL.dll
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DAL.pdb
@@ -9,15 +15,5 @@ D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.1\DALTests.csproj.CoreCompileI
 D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.1\DALTests.AssemblyInfoInputs.cache
 D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.1\DALTests.AssemblyInfo.cs
 D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.1\DALTests.csproj.CopyComplete
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.pdb
 D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.1\DALTests.dll
 D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.1\DALTests.pdb
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.Relational.dll
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.SqlServer.xml
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.Relational.xml
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.runtimeconfig.json
-D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.1\DALTests.runtimeconfig.dev.json

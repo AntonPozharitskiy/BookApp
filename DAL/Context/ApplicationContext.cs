@@ -1,26 +1,16 @@
-﻿using BLL.Entities;
+﻿using System;
+using BLL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Context
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext<User, Role, Guid, UserClaims, UserRole, UserLogin, RoleClaim, UserToken>
     {
+        public ApplicationContext(DbContextOptions options) :base(options)
+        {
+
+        }
         public DbSet<Book> Books { get; set; }
-
-        public ApplicationContext()
-        {
-
-        }
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) :base(options)
-        {
-
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(@"Server=ESW413;Database=BookApp.InMemory;Initial Catalog=master;Trusted_Connection=True");
-            }
-        }
     }
 }

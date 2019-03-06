@@ -5,7 +5,6 @@ using System.Text;
 
 namespace BLL.Entities
 {
-    //[Table("Book")]
     public class Book
     {
         public int Id { get; set; }

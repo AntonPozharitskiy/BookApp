@@ -2,10 +2,8 @@ D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\DAL.deps.json
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\DAL.dll
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\DAL.pdb
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\BLL.dll
-D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.Relational.dll
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\BLL.pdb
-D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.Relational.xml
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.1\Microsoft.EntityFrameworkCore.SqlServer.xml
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.1\DAL.csprojAssemblyReference.cache
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.1\DAL.csproj.CoreCompileInputs.cache
