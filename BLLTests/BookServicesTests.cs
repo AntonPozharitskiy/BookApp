@@ -3,8 +3,6 @@ using BLL.DataAccess;
 using BLL.Entities;
 using BLL.Finders;
 using BLL.Services;
-using DAL.Context;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 
@@ -12,13 +10,6 @@ namespace BLLTests
 {
     public class BookServicesTests
     {
-        public static readonly DbContextOptions<ApplicationContext> _options =
-            new DbContextOptionsBuilder<ApplicationContext>()
-                .UseInMemoryDatabase("ESW413")
-                .Options;
-
-        private readonly ApplicationContext _context = new ApplicationContext(_options);
-
         private static readonly Mock<IRepository<Book>> _reposMock = new Mock<IRepository<Book>>();
         private static readonly Mock<IUnitOfWork> _uowMock = new Mock<IUnitOfWork>();
         private static readonly Mock<IBookFinder> _finderMock = new Mock<IBookFinder>();
@@ -69,6 +60,7 @@ namespace BLLTests
             testBook.Title = "Updated Book";
             _service.Update(testBook);
             _reposMock.Verify(c=>c.Update(It.IsAny<Book>()), Times.Once);
+            _uowMock.Verify(c=>c.Save(), Times.AtLeastOnce);
         }
 
         [Fact]
@@ -76,12 +68,7 @@ namespace BLLTests
         {
             _service.Update(nullBook);
             _reposMock.Verify(c => c.Update(It.IsAny<Book>()), Times.Never);
-        }
-
-        [Fact]
-        public void UpdateNonExistentBookTest()
-        {
-
+            _uowMock.Verify(c => c.Save(), Times.Never);
         }
     }
 }
