@@ -6,7 +6,7 @@ using DAL.Context;
 
 namespace DAL
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationContext _context;
 

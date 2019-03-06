@@ -1,51 +1,50 @@
 ﻿using System.Collections.Generic;
 using BLL.DataAccess;
 using BLL.Entities;
+using BLL.Finders;
 
 namespace BLL.Services
 {
     public class BookService
     {
-        public readonly IRepository<Book> _repository;
-        public readonly IUnitOfWork _UnitOfWork;
-        public BookService(IRepository<Book> repository, IUnitOfWork unitOfWork)
+        private readonly IRepository<Book> _repository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IBookFinder _finder;
+        public BookService(IRepository<Book> repository, IUnitOfWork unitOfWork, IBookFinder finder)
         {
             _repository = repository;
-            _UnitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
+            _finder = finder;
         }
         public void Create(Book book)
         {
+            if(book == null) return;
             _repository.Create(book);
-            _UnitOfWork.Save();
+            _unitOfWork.Save();
         }
 
         public void Delete(Book book)
         {
+            if(book == null) return;
             _repository.Delete(book);
-            _UnitOfWork.Save();
+            _unitOfWork.Save();
         }
 
         public void Update(Book book)
-        { 
+        {
+            if (book == null) return;
             _repository.Update(book);
-            _UnitOfWork.Save();
-        }
-        public void Create(IEnumerable<Book> books)
-        {
-            _repository.Create(books);
-            _UnitOfWork.Save();
+            _unitOfWork.Save();
         }
 
-        public void Delete(IEnumerable<Book> books)
+        public Book GetBook(int id)
         {
-            _repository.Delete(books);
-            _UnitOfWork.Save();
+            return _finder.GetById(id);
         }
 
-        public void Update(IEnumerable<Book> books)
+        public IEnumerable<Book> GetAll()
         {
-            _repository.Update(books);
-            _UnitOfWork.Save();
+            return _finder.GetAll();
         }
     }
 }

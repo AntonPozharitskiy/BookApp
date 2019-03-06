@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BLL.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class Finder<T, U> : IFinder<T, U> where T : class
+    public class Finder<T> where T : class
     {
         private readonly DbSet<T> _entity;
 
@@ -15,9 +17,9 @@ namespace DAL
             _entity = entity;
         }
 
-        public T Find(U key)
+        protected IQueryable<T> AsQueryable()
         {
-            return _entity.Find(key);
+            return _entity.AsQueryable();
         }
     }
 }

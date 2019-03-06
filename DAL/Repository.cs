@@ -30,20 +30,5 @@ namespace DAL
         {
             _entity.Update(entity);
         }
-
-        public void Create(IEnumerable<T> entity)
-        {
-            _entity.AddRange(entity);
-        }
-
-        public void Delete(IEnumerable<T> entity)
-        {
-            _entity.RemoveRange(entity);
-        }
-
-        public void Update(IEnumerable<T> entity)
-        {
-            _entity.UpdateRange(entity);
-        }
     }
 }
