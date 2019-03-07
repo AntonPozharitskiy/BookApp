@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BLL.Services
 {
-    public class UserService : IUserManager
+    public class UserManagerWrapper : IUserManager
     {
         private readonly UserManager<User> _manager;
 
 
-        public UserService(UserManager<User> manager)
+        public UserManagerWrapper(UserManager<User> manager)
         {
             _manager = manager;
         }

@@ -8,7 +8,6 @@ namespace BLL.Entities
 {
     public class Role : IdentityRole<Guid>
     {
-
     }
 
     public class UserClaims : IdentityUserClaim<Guid>

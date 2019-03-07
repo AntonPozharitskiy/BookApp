@@ -12,3 +12,5 @@ D:\BookApp\BookApp\BLL\obj\Debug\netcoreapp2.2\BLL.dll
 D:\BookApp\BookApp\BLL\obj\Debug\netcoreapp2.2\BLL.pdb
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Core.dll
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Core.xml
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Identity.dll
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Identity.xml

@@ -29,9 +29,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Manager\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>

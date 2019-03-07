@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL;
 using BLL.Entities;
+using BLL.Managers;
 using BLL.Services;
+using BLL.Wrappers;
 using DAL.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +28,8 @@ namespace API
 {
     public class Startup
     {
+        private IRoleManager _roleManager;
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -51,8 +55,9 @@ namespace API
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<UserManager<User>>();
-            services.AddTransient<SignInManager<User>>();
-            services.AddTransient<IUserManager, UserService>();
+            services.AddTransient<ISignInManager, SignInManagerWrapper>();
+            services.AddTransient<IUserManager, UserManagerWrapper>();
+            services.AddTransient<IRoleManager, RoleManagerWrapper>();
 
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
@@ -81,7 +86,7 @@ namespace API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationContext context, IServiceProvider serviceProvider)
         {
             app.Use(async (ctx, next) =>
             {
@@ -106,6 +111,25 @@ namespace API
             app.UseMvc(routes => { routes.MapRoute("default", "controller/action/{id}"); });
 
             app.UseAuthentication();
+            CreateRoles(serviceProvider).Wait();
+
+        }
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            //initializing custom roles   
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
+            
+            string[] roleNames = { "Admin", "User" };
+            
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+
+                if (roleExist) continue;
+                var roleToAdd = new Role {Name = roleName};
+                
+                await roleManager.CreateAsync(roleToAdd);
+            }
 
         }
     }
