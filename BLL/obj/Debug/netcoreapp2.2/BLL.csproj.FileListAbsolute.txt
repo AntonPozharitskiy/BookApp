@@ -10,3 +10,5 @@ D:\BookApp\BookApp\BLL\obj\Debug\netcoreapp2.2\BLL.AssemblyInfo.cs
 D:\BookApp\BookApp\BLL\obj\Debug\netcoreapp2.2\BLL.csproj.CopyComplete
 D:\BookApp\BookApp\BLL\obj\Debug\netcoreapp2.2\BLL.dll
 D:\BookApp\BookApp\BLL\obj\Debug\netcoreapp2.2\BLL.pdb
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Core.dll
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Core.xml

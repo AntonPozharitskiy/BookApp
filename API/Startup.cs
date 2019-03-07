@@ -4,7 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL;
 using BLL.Entities;
+using BLL.Services;
 using DAL.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -42,7 +44,7 @@ namespace API
             });
             services.AddIdentity<User, Role>(options =>
                 {
-                    
+                    //настроить валидационные настройки!
                 })
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
@@ -50,7 +52,8 @@ namespace API
 
             services.AddTransient<UserManager<User>>();
             services.AddTransient<SignInManager<User>>();
-           
+            services.AddTransient<IUserManager, UserService>();
+
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
             services

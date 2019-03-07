@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Requests;
 using API.Responses;
+using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,9 @@ namespace API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
+        private readonly IUserManager _userManager;
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
+        public AccountController(SignInManager<User> signInManager, IUserManager userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -34,11 +35,7 @@ namespace API.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var newUser = (User) requestModel;
             newUser.Id = Guid.NewGuid();
-            var result = await _userManager.CreateAsync(newUser);
-            if (!result.Succeeded)
-            {
-                return BadRequest("Error register user!");
-            }
+            await _userManager.CreateUser(newUser, requestModel.Password);
 
             return Ok(newUser);
         }

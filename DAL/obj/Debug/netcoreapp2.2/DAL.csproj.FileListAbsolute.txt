@@ -12,3 +12,6 @@ D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfo.cs
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.csproj.CopyComplete
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.dll
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.pdb
+D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
+D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml
