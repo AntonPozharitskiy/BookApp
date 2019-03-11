@@ -14,3 +14,11 @@ D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Cor
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Core.xml
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Identity.dll
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Identity.xml
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.IdentityModel.Protocols.dll
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.IdentityModel.Protocols.pdb
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.IdentityModel.Protocols.xml

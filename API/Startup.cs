@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL;
+using BLL.Config;
 using BLL.Entities;
 using BLL.Managers;
 using BLL.Services;
@@ -53,34 +54,12 @@ namespace API
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.AddTransient<UserManager<User>>();
+            
             services.AddTransient<ISignInManager, SignInManagerWrapper>();
             services.AddTransient<IUserManager, UserManagerWrapper>();
             services.AddTransient<IRoleManager, RoleManagerWrapper>();
-
-
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
-            services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-                })
-                .AddJwtBearer(cfg =>
-                {
-                    cfg.RequireHttpsMetadata = false;
-                    cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidIssuer = Configuration["JwtIssuer"],
-                        ValidAudience = Configuration["JwtIssuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
-                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
-                    };
-                });
+            services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<JwtConfigurationSettings>();
 
             services.AddCors();
         }

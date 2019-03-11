@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using API.Controllers;
 using API.Requests;
-using API.Responses;
 using BLL;
 using BLL.Entities;
 using BLL.Managers;
@@ -20,7 +19,9 @@ namespace APITests
 
         private static Mock<ISignInManager> mockedSignInManager = new Mock<ISignInManager>();
 
-        public AccountController controller = new AccountController(mockedSignInManager.Object, mockedUserManager.Object);
+        private static Mock<ITokenService> mockedTokenService = new Mock<ITokenService>();
+
+        public AccountController controller = new AccountController(mockedSignInManager.Object, mockedUserManager.Object, mockedTokenService.Object);
 
         [Fact]
         public async Task RegisterNewUser()
@@ -34,9 +35,19 @@ namespace APITests
         }
 
         [Fact]
+        public async Task Authenticate()
+        {
+            LoginModel userLoginModel = new LoginModel(){Email = "microchel11@efrem.com", Password = "Confirmed123$"};
+            var result = await controller.Authenticate(userLoginModel);
+            Assert.NotNull(result);
+            mockedTokenService.Verify(user => user.GetAuthenticationToken(), Times.Once);
+        }
+
+        [Fact]
         public async Task Logout()
         {
             await controller.Logout();
+            
             mockedSignInManager.Verify(log => log.Logout(), Times.Once);
         }
 

@@ -11,5 +11,12 @@ namespace API.Requests
         public string Email { get; set; }
         public string Password { get; set; }
         public LoginModel() { }
+        public static explicit operator User(LoginModel userModel)
+        {
+            return new User
+            {
+                Email = userModel.Email
+            };
+        }
     }
 }

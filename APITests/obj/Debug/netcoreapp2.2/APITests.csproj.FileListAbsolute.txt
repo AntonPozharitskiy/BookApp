@@ -19,3 +19,6 @@ D:\BookApp\BookApp\APITests\obj\Debug\netcoreapp2.2\APITests.csproj.CopyComplete
 D:\BookApp\BookApp\APITests\bin\Debug\netcoreapp2.2\APITests.pdb
 D:\BookApp\BookApp\APITests\obj\Debug\netcoreapp2.2\APITests.dll
 D:\BookApp\BookApp\APITests\obj\Debug\netcoreapp2.2\APITests.pdb
+D:\BookApp\BookApp\APITests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
+D:\BookApp\BookApp\APITests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+D:\BookApp\BookApp\APITests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml
