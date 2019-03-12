@@ -29,8 +29,6 @@ namespace API
 {
     public class Startup
     {
-        private IRoleManager _roleManager;
-        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -61,7 +59,16 @@ namespace API
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<JwtConfigurationSettings>();
 
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,8 +91,8 @@ namespace API
             {
                 app.UseHsts();
             }
-
-            app.UseCors();
+            
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseMvc(routes => { routes.MapRoute("default", "controller/action/{id}"); });
 

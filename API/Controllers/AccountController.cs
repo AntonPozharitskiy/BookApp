@@ -10,12 +10,14 @@ using Microsoft.EntityFrameworkCore;
 using BLL.Entities;
 using BLL.Managers;
 using DAL.Context;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
 namespace API.Controllers
 {
     [Route("Account")]
+    [EnableCors("MyPolicy")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -48,7 +50,7 @@ namespace API.Controllers
         {
             var currentUser = _userManager.GetUserByEmail(loginModel.Email);
             if(currentUser == null) return BadRequest("There are not users with this email");
-            var foundedUser = (User)loginModel; //костыль?
+            var foundedUser = (User)loginModel;
             await _signInManager.CheckPassword(foundedUser, loginModel.Password, false);
             var authToken = new
             {
