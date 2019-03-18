@@ -14,7 +14,7 @@ namespace BLLTests
         private static readonly Mock<IUnitOfWork> _uowMock = new Mock<IUnitOfWork>();
         private static readonly Mock<IBookFinder> _finderMock = new Mock<IBookFinder>();
         private readonly BookService _service = new BookService(_reposMock.Object, _uowMock.Object, _finderMock.Object);
-        private Book testBook = new Book { Id = 0, DateOfRelease = DateTime.Now, Title = "Test Book", AuthorId = 1 };
+        private Book testBook = new Book { Id = 0, DateOfRelease = DateTime.Now, Title = "Test Book", AuthorId = Guid.NewGuid().ToString() };
         private Book nullBook = null;
 
         [Fact]

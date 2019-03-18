@@ -25,9 +25,9 @@ namespace DALTests
         [Fact]
         public void TestingCreateMethod()
         {
-            _context.Books.Add(new Book { Title = "Demo1", AuthorId = 1, DateOfRelease = new DateTime(1998, 09, 03) });
-            _context.Books.Add(new Book { Title = "Demo2", AuthorId = 1, DateOfRelease = new DateTime(1998, 09, 03) });
-            _context.Books.Add(new Book { Title = "Demo3", AuthorId = 1, DateOfRelease = new DateTime(1998, 09, 03) });
+            _context.Books.Add(new Book { Title = "Demo1", AuthorId = Guid.NewGuid().ToString(), DateOfRelease = new DateTime(1998, 09, 03) });
+            _context.Books.Add(new Book { Title = "Demo2", AuthorId = Guid.NewGuid().ToString(), DateOfRelease = new DateTime(1998, 09, 03) });
+            _context.Books.Add(new Book { Title = "Demo3", AuthorId = Guid.NewGuid().ToString(), DateOfRelease = new DateTime(1998, 09, 03) });
             _context.SaveChanges();
             Assert.Equal(3, _context.Books.Count());
         }
@@ -35,7 +35,7 @@ namespace DALTests
         [Fact]
         public void TestingDeleteMethod()
         {
-            Book dirtyBook = new Book {Title = "Demo1", AuthorId = 1, DateOfRelease = new DateTime(1998, 09, 03)};
+            Book dirtyBook = new Book {Title = "Demo1", AuthorId = Guid.NewGuid().ToString(), DateOfRelease = new DateTime(1998, 09, 03)};
             _context.Books.Add(dirtyBook);
             _context.SaveChanges();
             _context.Books.Remove(dirtyBook);
@@ -46,11 +46,10 @@ namespace DALTests
         [Fact]
         public void TestingUpdateMethod()
         {
-            Book dirtyBook = new Book { Title = "Demo1", AuthorId = 1, DateOfRelease = new DateTime(1998, 09, 03) };
+            Book dirtyBook = new Book { Title = "Demo1", AuthorId = Guid.NewGuid().ToString(), DateOfRelease = new DateTime(1998, 09, 03) };
             _context.Books.Add(dirtyBook);
             _context.SaveChanges();
             dirtyBook.Title = "UpdatedDemo1";
-            //_context.Books.Update(dirtyBook);
             _context.SaveChanges();
             Assert.Equal("UpdatedDemo1", dirtyBook.Title);
 

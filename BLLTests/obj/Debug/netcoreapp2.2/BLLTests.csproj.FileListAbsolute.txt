@@ -19,3 +19,6 @@ D:\BookApp\BookApp\BLLTests\obj\Debug\netcoreapp2.2\BLLTests.dll
 D:\BookApp\BookApp\BLLTests\obj\Debug\netcoreapp2.2\BLLTests.pdb
 D:\BookApp\BookApp\BLLTests\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\BookApp\BookApp\BLLTests\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.xml
+D:\BookApp\BookApp\BLLTests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
+D:\BookApp\BookApp\BLLTests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+D:\BookApp\BookApp\BLLTests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml

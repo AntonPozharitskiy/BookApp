@@ -22,3 +22,5 @@ D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.IdentityModel.Protocols
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Configuration.Abstractions.xml
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.IdentityModel.Protocols.pdb
 D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.IdentityModel.Protocols.xml
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\BookApp\BookApp\BLL\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Http.Abstractions.xml

@@ -19,3 +19,6 @@ D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.2\DALTests.dll
 D:\BookApp\BookApp\DALTests\obj\Debug\netcoreapp2.2\DALTests.pdb
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.xml
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+D:\BookApp\BookApp\DALTests\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml

@@ -48,7 +48,7 @@ namespace API.Controllers
         [Route("Login")]
         public async Task<object> Authenticate(LoginModel loginModel)
         {
-            var currentUser = _userManager.GetUserByEmail(loginModel.Email);
+            var currentUser = await _userManager.GetUserByEmail(loginModel.Email);
             if(currentUser == null) return BadRequest("There are not users with this email");
             var foundedUser = (User)loginModel;
             await _signInManager.CheckPassword(foundedUser, loginModel.Password, false);

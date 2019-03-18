@@ -5,7 +5,7 @@ using BLL.Finders;
 
 namespace BLL.Services
 {
-    public class BookService
+    public class BookService : IBookService
     {
         private readonly IRepository<Book> _repository;
         private readonly IUnitOfWork _unitOfWork;
