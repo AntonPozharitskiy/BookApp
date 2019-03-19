@@ -1,6 +1,6 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
-using API.Controllers;
 using BLL;
 using BLL.Config;
 using BLL.DataAccess;
@@ -12,6 +12,7 @@ using BLL.Wrappers;
 using DAL;
 using DAL.Context;
 using DAL.Finder;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -19,6 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API
 {
@@ -57,7 +59,41 @@ namespace API
             services.AddScoped<IRepository<Book>, Repository<Book>>();
             services.AddTransient<IBookFinder, BookFinder>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<JwtConfigurationSettings>();
+            services.AddTransient<AuthOptions>();
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // укзывает, будет ли валидироваться издатель при валидации токена
+                        ValidateIssuer = true,
+                        // строка, представляющая издателя
+                        ValidIssuer = AuthOptions.ISSUER,
+
+                        // будет ли валидироваться потребитель токена
+                        ValidateAudience = true,
+                        // установка потребителя токена
+                        ValidAudience = AuthOptions.AUDIENCE,
+
+                        // будет ли валидироваться время существования
+                        ValidateLifetime = true,
+
+                        // установка ключа безопасности
+                        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                        // валидация ключа безопасности
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
+
+
             services.AddCors(options =>
             {
                 options.AddPolicy("MyPolicy",
@@ -100,8 +136,7 @@ namespace API
 
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)
-        {
-            //initializing custom roles   
+        {  
             var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
             
             string[] roleNames = { "Admin", "User" };

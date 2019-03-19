@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using BLL;
 using BLL.Entities;
 using BLL.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("Books")]
+    [EnableCors("MyPolicy")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -54,7 +57,6 @@ namespace API.Controllers
         [HttpPost]
         public async void AddBook(Book book)
         {
-          
             if (book != null)
             {
                 var user = await _userManager.GetUserByEmail(this.User.Identity.Name);

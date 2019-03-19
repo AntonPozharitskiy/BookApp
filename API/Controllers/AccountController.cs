@@ -51,10 +51,11 @@ namespace API.Controllers
             var currentUser = await _userManager.GetUserByEmail(loginModel.Email);
             if(currentUser == null) return BadRequest("There are not users with this email");
             var foundedUser = (User)loginModel;
-            await _signInManager.CheckPassword(foundedUser, loginModel.Password, false);
+            var passconfirm = await _signInManager.CheckPassword(foundedUser, loginModel.Password, false);
             var authToken = new
             {
-                accessToken = _tokenService.GetAuthenticationToken(),
+                
+                accessToken = _tokenService.GetAuthenticationToken(loginModel.Email),
                 userEmail = loginModel.Email
             };
             return authToken;

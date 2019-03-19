@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using BLL.Config;
+using BLL.Entities;
 using BLL.Managers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
@@ -13,25 +16,24 @@ namespace BLL.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly JwtSecurityToken _jwtToken;
-        public TokenService(JwtConfigurationSettings configuration)
+        private readonly IUserManager _userManager;
+        public TokenService(IUserManager userManager)
         {
-            var jwtConfiguration = configuration;
-            var issuer = jwtConfiguration.TokenIssuer;
-            var secretKey = jwtConfiguration.TokenKey;
-            var lifetime = jwtConfiguration.TokenExpireTime;
-
-            _jwtToken = new JwtSecurityTokenHandler().CreateJwtSecurityToken(
-                issuer: issuer,
-                expires: lifetime,
-                signingCredentials: secretKey
-                );
+            _userManager = userManager;
         }
 
-        public string GetAuthenticationToken()
+        public string GetAuthenticationToken(string userEmail)
         {
-            var encodedToken = new JwtSecurityTokenHandler().WriteToken(_jwtToken);
-            return encodedToken;
+            var claims = new List<Claim>{ new Claim(JwtRegisteredClaimNames.Sub, userEmail) };
+            var jwtToken = new JwtSecurityToken(
+                    AuthOptions.ISSUER,
+                    AuthOptions.AUDIENCE,
+                    claims,
+                    expires: DateTime.Now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
+            );
+           return new JwtSecurityTokenHandler().WriteToken(jwtToken);
+
         }
     }
 }
