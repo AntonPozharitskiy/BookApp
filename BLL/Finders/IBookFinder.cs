@@ -9,7 +9,7 @@ namespace BLL.Finders
     public interface IBookFinder
     {
         Book GetById(int id);
-        IEnumerable<Book> GetAll();
+        IEnumerable<Book> GetAll(Guid id);
         bool IsBookExists(Book book);
     }
 }

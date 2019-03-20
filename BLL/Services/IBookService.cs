@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BLL.Entities;
 
 namespace BLL.Services
@@ -9,6 +10,6 @@ namespace BLL.Services
         void Delete(Book book);
         void Update(Book book);
         Book GetBook(int id);
-        IEnumerable<Book> GetAll();
+        IEnumerable<Book> GetAll(Guid id);
     }
 }

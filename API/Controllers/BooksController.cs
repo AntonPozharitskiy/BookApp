@@ -29,9 +29,12 @@ namespace API.Controllers
         
         [Route("GetAll")]
         [HttpGet]
-        public IEnumerable<Book> GetBooks()
+        public async Task<IEnumerable<Book>> GetUserBooks()
         {
-            return _service.GetAll();
+            var identity = (ClaimsIdentity)this.User.Identity;
+            var userEmail = identity.FindFirst(JwtRegisteredClaimNames.Sub).Value;
+            var user = await _userManager.GetUserByEmail(userEmail);
+            return _service.GetAll(user.Id);
         }
         
         [Route("Get")]
