@@ -2593,7 +2593,8 @@
           "BLL": "1.0.0",
           "DAL": "1.0.0",
           "Microsoft.AspNetCore.Cors": "2.2.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.2"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.2",
+          "System.IdentityModel.Tokens.Jwt": "5.3.0.0"
         },
         "runtime": {
           "API.dll": {}
@@ -2601,8 +2602,7 @@
       },
       "BLL/1.0.0": {
         "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "5.4.0",
-          "System.IdentityModel.Tokens.Jwt": "5.3.0.0"
+          "Microsoft.IdentityModel.Tokens": "5.4.0"
         },
         "runtime": {
           "BLL.dll": {}

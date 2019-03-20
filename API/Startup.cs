@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
+using API.Controllers;
 using BLL;
 using BLL.Config;
 using BLL.DataAccess;
@@ -41,7 +42,8 @@ namespace API
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:BookApp"]);
-            });
+       
+            },ServiceLifetime.Scoped);
             services.AddIdentity<User, Role>(options =>
                 {
                     //настроить валидационные настройки!
@@ -49,17 +51,17 @@ namespace API
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient(x => x.GetRequiredService<ApplicationContext>().Books);
-            
-            services.AddTransient<ISignInManager, SignInManagerWrapper>();
-            services.AddTransient<IUserManager, UserManagerWrapper>();
-            services.AddTransient<IRoleManager, RoleManagerWrapper>();
-            services.AddTransient<ITokenService, TokenService>();
-            services.AddTransient<IBookService, BookService>();
+            services.AddScoped(x => x.GetRequiredService<ApplicationContext>().Books);
+            services.AddScoped<UserManager<User>>();
+            services.AddScoped<ISignInManager, SignInManagerWrapper>();
+            services.AddScoped<IUserManager, UserManagerWrapper>();
+            services.AddScoped<IRoleManager, RoleManagerWrapper>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IBookService, BookService>();
             services.AddScoped<IRepository<Book>, Repository<Book>>();
-            services.AddTransient<IBookFinder, BookFinder>();
+            services.AddScoped<IBookFinder, BookFinder>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<AuthOptions>();
+            services.AddScoped<AuthOptions>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
@@ -126,14 +128,11 @@ namespace API
             {
                 app.UseHsts();
             }
-            
-            app.UseCors("MyPolicy");
+             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
+           
             app.UseMvc(routes => { routes.MapRoute("default", "controller/action/{id}"); });
-
-            app.UseAuthentication();
-            CreateRoles(serviceProvider).Wait();
-
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {  

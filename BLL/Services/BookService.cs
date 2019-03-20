@@ -16,6 +16,7 @@ namespace BLL.Services
             _unitOfWork = unitOfWork;
             _finder = finder;
         }
+
         public void Create(Book book)
         {
             if(book == null) return;

@@ -14,9 +14,9 @@ namespace DAL
         {
             _context = context;
         }
-        public async void Save()
+        public void Save()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

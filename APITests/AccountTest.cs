@@ -40,7 +40,7 @@ namespace APITests
             LoginModel userLoginModel = new LoginModel(){Email = "microchel11@efrem.com", Password = "Confirmed123$"};
             var result = await controller.Authenticate(userLoginModel);
             Assert.NotNull(result);
-            mockedTokenService.Verify(user => user.GetAuthenticationToken(), Times.Once);
+            mockedTokenService.Verify(user => user.GetAuthenticationToken(userLoginModel.Email), Times.Once);
         }
 
         [Fact]

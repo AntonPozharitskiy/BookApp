@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using BLL;
 using BLL.Entities;
 using BLL.Services;
@@ -11,6 +14,7 @@ namespace API.Controllers
 {
     [Route("Books")]
     [EnableCors("MyPolicy")]
+    [Authorize]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -21,7 +25,6 @@ namespace API.Controllers
         {
             _service = service;
             _userManager = userManager;
-            
         }
         
         [Route("GetAll")]
@@ -55,15 +58,20 @@ namespace API.Controllers
         
         [Route("Create")]
         [HttpPost]
-        public async void AddBook(Book book)
+        public async Task<IActionResult> AddBook(Book book)
         {
-            if (book != null)
+            if (book.Content != null && book.Title != null)
             {
-                var user = await _userManager.GetUserByEmail(this.User.Identity.Name);
+                var identity = (ClaimsIdentity)this.User.Identity;
+                var userEmail = identity.FindFirst(JwtRegisteredClaimNames.Sub).Value;
+                var user = await _userManager.GetUserByEmail(userEmail);
                 book.AuthorId = user.Id.ToString();
                 book.DateOfRelease = DateTime.Now;
+                _service.Create(book);
+                return Ok(book);
             }
-            _service.Create(book);
+
+            return BadRequest();
         }
         
         [Route("Delete")]
