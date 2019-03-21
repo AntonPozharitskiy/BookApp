@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BLL;
@@ -29,12 +30,14 @@ namespace API.Controllers
         
         [Route("GetAll")]
         [HttpGet]
-        public async Task<IEnumerable<Book>> GetUserBooks()
+        public async Task<Book[]> GetUserBooks()
         {
             var identity = (ClaimsIdentity)this.User.Identity;
             var userEmail = identity.FindFirst(JwtRegisteredClaimNames.Sub).Value;
             var user = await _userManager.GetUserByEmail(userEmail);
-            return _service.GetAll(user.Id);
+            IEnumerable<Book> userBookList = _service.GetAll(user.Id);
+            Book[] bookArray = userBookList.Cast<Book>().ToArray();
+            return bookArray;
         }
         
         [Route("Get")]
@@ -46,17 +49,20 @@ namespace API.Controllers
             return book;
         }
         
-        [Route("Edit")]
-        [HttpPost("{id}")]
-        public void UpdateBook(int id, Book book)
+        [Route("Update")]
+        [HttpPost]
+        public ActionResult<Book> UpdateBook(Book book)
         {
-            if (id != book.Id)
+            if (book != null)
             {
-                Book currentBook = _service.GetBook(id);
+                Book currentBook = _service.GetBook(book.Id);
+                currentBook.Title = book.Title;
+                currentBook.Content = book.Content;
                 _service.Update(currentBook);
+                return currentBook;
             }
 
-            _service.Update(book);
+            return null;
         }
         
         [Route("Create")]
@@ -77,13 +83,15 @@ namespace API.Controllers
             return BadRequest();
         }
         
-        [Route("Delete")]
-        [HttpPost("{id}")]
-        public void DeleteBook(int id)
+        [Route("Delete/{id}")]
+        [HttpPost]
+        public int DeleteBook(int id)
         {
             var book = _service.GetBook(id);
 
             _service.Delete(book);
+
+            return id;
         }
     }
 }

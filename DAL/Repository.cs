@@ -28,7 +28,7 @@ namespace DAL
 
         public void Update(T entity)
         {
-            _entity.Update(entity);
+            _entity.AttachRange(entity);
         }
     }
 }
