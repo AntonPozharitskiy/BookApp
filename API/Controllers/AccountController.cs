@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using API.Mapping;
 using API.Requests;
+using AutoMapper;
 using BLL;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BLL.Entities;
 using BLL.Managers;
-using DAL.Context;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 
 namespace API.Controllers
 {
@@ -34,19 +29,21 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register(RegisterUserModel registerModel)
+        public async Task<ActionResult> Register(RequestUserModel registerModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var newUser = (User) registerModel;
-            newUser.Id = Guid.NewGuid();
-            await _userManager.CreateUser(newUser, registerModel.Password);
-            await _userManager.AddToRole(newUser, "User");
-            return Ok(newUser);
+            AutomapperConfig.Configure();
+            var mappedUser = Mapper.Map<RequestUserModel, User>(registerModel);
+            mappedUser.Id = Guid.NewGuid();
+            await _userManager.CreateUser(mappedUser, registerModel.Password);
+            await _userManager.AddToRole(mappedUser, "User");
+            var unmappedUser = Mapper.Map<User, RequestUserModel>(mappedUser);
+            return Ok(unmappedUser);
         }
 
         [HttpPost]
         [Route("Login")]
-        public async Task<object> Authenticate(LoginModel loginModel)
+        public async Task<object> Authenticate(RequestUserModel loginModel)
         {
             var currentUser = await _userManager.GetUserByEmail(loginModel.Email);
             if(currentUser == null) return BadRequest("There are not users with this email");

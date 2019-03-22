@@ -36,7 +36,7 @@ namespace API.Controllers
             var userEmail = identity.FindFirst(JwtRegisteredClaimNames.Sub).Value;
             var user = await _userManager.GetUserByEmail(userEmail);
             IEnumerable<Book> userBookList = _service.GetAll(user.Id);
-            Book[] bookArray = userBookList.Cast<Book>().ToArray();
+            Book[] bookArray = userBookList.ToArray();
             return bookArray;
         }
         
