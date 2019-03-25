@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Requests;
-using API.Responses;
 using AutoMapper;
 using BLL;
 using BLL.Entities;

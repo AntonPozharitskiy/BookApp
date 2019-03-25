@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using API.Mapping;
 using API.Requests;
-using API.Responses;
 using AutoMapper;
 using BLL;
 using Microsoft.AspNetCore.Mvc;

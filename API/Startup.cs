@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
-using API.Controllers;
 using API.Mapping;
 using API.Validators;
 using BLL;
