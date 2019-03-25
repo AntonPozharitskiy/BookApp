@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using API.Controllers;
 using API.Mapping;
+using API.Validators;
 using BLL;
 using BLL.Config;
 using BLL.DataAccess;
@@ -14,6 +15,7 @@ using BLL.Wrappers;
 using DAL;
 using DAL.Context;
 using DAL.Finder;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +41,11 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddFluentValidation(validator =>
+                {
+                    validator.RegisterValidatorsFromAssemblyContaining<UserValidator>();
+                    validator.RegisterValidatorsFromAssemblyContaining<BookValidator>();
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<ApplicationContext>(options =>
             {
@@ -48,7 +54,6 @@ namespace API
             },ServiceLifetime.Scoped);
             services.AddIdentity<User, Role>(options =>
                 {
-                    //настроить валидационные настройки!
                 })
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
