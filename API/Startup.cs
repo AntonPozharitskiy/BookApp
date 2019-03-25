@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using API.Controllers;
+using API.Mapping;
 using BLL;
 using BLL.Config;
 using BLL.DataAccess;
@@ -30,6 +31,7 @@ namespace API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AutomapperConfig.Configure();
         }
 
         public IConfiguration Configuration { get; }

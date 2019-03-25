@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using API.Mapping;
 using API.Requests;
+using API.Responses;
 using AutoMapper;
 using BLL;
 using Microsoft.AspNetCore.Mvc;
@@ -32,13 +33,11 @@ namespace API.Controllers
         public async Task<ActionResult> Register(RequestUserModel registerModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            AutomapperConfig.Configure();
             var mappedUser = Mapper.Map<RequestUserModel, User>(registerModel);
             mappedUser.Id = Guid.NewGuid();
             await _userManager.CreateUser(mappedUser, registerModel.Password);
             await _userManager.AddToRole(mappedUser, "User");
-            var unmappedUser = Mapper.Map<User, RequestUserModel>(mappedUser);
-            return Ok(unmappedUser);
+            return Ok(mappedUser);
         }
 
         [HttpPost]
@@ -47,13 +46,13 @@ namespace API.Controllers
         {
             var currentUser = await _userManager.GetUserByEmail(loginModel.Email);
             if(currentUser == null) return BadRequest("There are not users with this email");
-            var foundedUser = (User)loginModel;
-            var passconfirm = await _signInManager.CheckPassword(foundedUser, loginModel.Password, false);
+            Mapper.Map(loginModel, currentUser);
+            var passconfirm = await _signInManager.CheckPassword(currentUser, loginModel.Password, false);
             var authToken = new
             {
-                
-                accessToken = _tokenService.GetAuthenticationToken(loginModel.Email),
-                userEmail = loginModel.Email
+                accessToken = _tokenService.GetAuthenticationToken(currentUser.Email),
+                userEmail = currentUser.Email,
+                id = currentUser.Id
             };
             return authToken;
         }

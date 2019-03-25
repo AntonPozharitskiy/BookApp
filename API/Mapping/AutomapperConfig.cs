@@ -24,10 +24,8 @@ namespace API.Mapping
                 .ForMember(x => x.Email, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(x => x.Email, opt => opt.MapFrom(src => src.Email))
                 .ForAllOtherMembers(x=>x.Ignore());
-            config.CreateMap<RequestBookModel, User>()
-                .ForAllOtherMembers(x => x.Ignore());
-            config.CreateMap<User, ResponseBookModel>()
-                .ForAllOtherMembers(x => x.Ignore());
+            config.CreateMap<RequestBookModel, Book>();
+            config.CreateMap<Book, ResponseBookModel>();
             Mapper.Initialize(config);
             Mapper.AssertConfigurationIsValid();
         }

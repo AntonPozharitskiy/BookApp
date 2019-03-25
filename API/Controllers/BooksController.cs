@@ -4,6 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using API.Requests;
+using API.Responses;
+using AutoMapper;
 using BLL;
 using BLL.Entities;
 using BLL.Services;
@@ -51,15 +54,16 @@ namespace API.Controllers
         
         [Route("Update")]
         [HttpPost]
-        public ActionResult<Book> UpdateBook(Book book)
+        public ActionResult<object> UpdateBook(RequestBookModel book)
         {
             if (book != null)
             {
-                Book currentBook = _service.GetBook(book.Id);
-                currentBook.Title = book.Title;
-                currentBook.Content = book.Content;
-                _service.Update(currentBook);
-                return currentBook;
+                Book bookToUpdate = _service.GetBook(book.Id);
+                Mapper.Map(book,bookToUpdate);
+              
+                _service.Update(bookToUpdate);
+
+                return bookToUpdate;
             }
 
             return null;
@@ -67,17 +71,18 @@ namespace API.Controllers
         
         [Route("Create")]
         [HttpPost]
-        public async Task<IActionResult> AddBook(Book book)
+        public async Task<IActionResult> AddBook(RequestBookModel book)
         {
             if (book.Content != null && book.Title != null)
             {
                 var identity = (ClaimsIdentity)this.User.Identity;
                 var userEmail = identity.FindFirst(JwtRegisteredClaimNames.Sub).Value;
                 var user = await _userManager.GetUserByEmail(userEmail);
-                book.AuthorId = user.Id.ToString();
-                book.DateOfRelease = DateTime.Now;
-                _service.Create(book);
-                return Ok(book);
+                Book newBook = Mapper.Map<RequestBookModel, Book>(book);
+                newBook.AuthorId = user.Id.ToString();
+                newBook.DateOfRelease = DateTime.Now;
+                _service.Create(newBook);
+                return Ok(newBook);
             }
 
             return BadRequest();
@@ -87,9 +92,8 @@ namespace API.Controllers
         [HttpPost]
         public int DeleteBook(int id)
         {
-            var book = _service.GetBook(id);
-
-            _service.Delete(book);
+            Book bookToDelete = _service.GetBook(id);
+            _service.Delete(bookToDelete);
 
             return id;
         }
