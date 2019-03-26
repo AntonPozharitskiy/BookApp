@@ -3,8 +3,11 @@ D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\DAL.dll
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\DAL.pdb
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\BLL.dll
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\BLL.pdb
 D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.xml
+D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.csprojAssemblyReference.cache
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.csproj.CoreCompileInputs.cache
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfoInputs.cache
@@ -12,6 +15,3 @@ D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfo.cs
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.csproj.CopyComplete
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.dll
 D:\BookApp\BookApp\DAL\obj\Debug\netcoreapp2.2\DAL.pdb
-D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
-D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
-D:\BookApp\BookApp\DAL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml

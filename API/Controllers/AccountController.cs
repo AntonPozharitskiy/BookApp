@@ -42,9 +42,7 @@ namespace API.Controllers
         [Route("Login")]
         public async Task<object> Authenticate(RequestUserModel loginModel)
         {
-            var currentUser = await _userManager.GetUserByEmail(loginModel.Email);
-            if(currentUser == null) return BadRequest("There are not users with this email");
-            Mapper.Map(loginModel, currentUser);
+            User currentUser = Mapper.Map<RequestUserModel, User>(loginModel);
             var passconfirm = await _signInManager.CheckPassword(currentUser, loginModel.Password, false);
             var authToken = new
             {

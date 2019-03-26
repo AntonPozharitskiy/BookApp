@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "3af064a99e0ded5d72098e4fbfcbff6c65882519"
+    "signature": "e5e34093cde86b2c0d1ca28beeba835d2af8bdd7"
   },
   "compilationOptions": {
     "defines": [
@@ -25,6 +25,7 @@
       "API/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
           "BLL": "1.0.0",
           "DAL": "1.0.0",
           "FluentValidation": "8.1.3",
@@ -40,6 +41,32 @@
         },
         "compile": {
           "API.dll": {}
+        }
+      },
+      "Autofac/4.9.1": {
+        "runtime": {
+          "lib/netstandard2.0/Autofac.dll": {
+            "assemblyVersion": "4.9.1.0",
+            "fileVersion": "4.9.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extensions.DependencyInjection/4.4.0": {
+        "dependencies": {
+          "Autofac": "4.9.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Autofac.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Autofac.Extensions.DependencyInjection.dll": {}
         }
       },
       "AutoMapper/8.0.0": {
@@ -811,6 +838,7 @@
       "BLL/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
           "Microsoft.IdentityModel.Tokens": "5.4.0"
         },
         "runtime": {
@@ -823,6 +851,7 @@
       "DAL/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
           "BLL": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore.InMemory": "2.2.2",
@@ -3643,6 +3672,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Autofac/4.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-L92DMQxpy4Xw3IypXxL8Z4NHt+qIkB1e0NB2OJ9u105Xp5sVsZSJ04YtYyubmM3KG8aC+WpyBhN14XcjPx5gLg==",
+      "path": "autofac/4.9.1",
+      "hashPath": "autofac.4.9.1.nupkg.sha512"
+    },
+    "Autofac.Extensions.DependencyInjection/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tkNVcEVTG+asY338sZQNbWQIoCrb13I6qOxBrVX7aStu7SGskDDyGT0TrqiJdfEB48GbCd04ZcNz86TdD4cIHg==",
+      "path": "autofac.extensions.dependencyinjection/4.4.0",
+      "hashPath": "autofac.extensions.dependencyinjection.4.4.0.nupkg.sha512"
     },
     "AutoMapper/8.0.0": {
       "type": "package",

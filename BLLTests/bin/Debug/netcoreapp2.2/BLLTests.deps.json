@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "0cc8133704c25f6ef18edbfa770b4df13d4f45f3"
+    "signature": "52061a8c28d6f7daa50facd108f66bca4ef7e14b"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,6 +9,7 @@
       "BLLTests/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
           "BLL": "1.0.0",
           "DAL": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.0.1",
@@ -18,6 +19,26 @@
         },
         "runtime": {
           "BLLTests.dll": {}
+        }
+      },
+      "Autofac/4.9.1": {
+        "runtime": {
+          "lib/netstandard2.0/Autofac.dll": {
+            "assemblyVersion": "4.9.1.0",
+            "fileVersion": "4.9.1.0"
+          }
+        }
+      },
+      "Autofac.Extensions.DependencyInjection/4.4.0": {
+        "dependencies": {
+          "Autofac": "4.9.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Autofac.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
+          }
         }
       },
       "AutoMapper/8.0.0": {
@@ -2104,6 +2125,7 @@
       "BLL/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
           "Microsoft.IdentityModel.Tokens": "5.4.0",
           "System.IdentityModel.Tokens.Jwt": "5.3.0.0"
         },
@@ -2114,6 +2136,7 @@
       "DAL/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
           "BLL": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore.InMemory": "2.2.2",
@@ -2147,6 +2170,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Autofac/4.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-L92DMQxpy4Xw3IypXxL8Z4NHt+qIkB1e0NB2OJ9u105Xp5sVsZSJ04YtYyubmM3KG8aC+WpyBhN14XcjPx5gLg==",
+      "path": "autofac/4.9.1",
+      "hashPath": "autofac.4.9.1.nupkg.sha512"
+    },
+    "Autofac.Extensions.DependencyInjection/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tkNVcEVTG+asY338sZQNbWQIoCrb13I6qOxBrVX7aStu7SGskDDyGT0TrqiJdfEB48GbCd04ZcNz86TdD4cIHg==",
+      "path": "autofac.extensions.dependencyinjection/4.4.0",
+      "hashPath": "autofac.extensions.dependencyinjection.4.4.0.nupkg.sha512"
     },
     "AutoMapper/8.0.0": {
       "type": "package",

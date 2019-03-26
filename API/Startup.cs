@@ -3,7 +3,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using API.Mapping;
 using API.Validators;
+using Autofac;
 using BLL;
+using BLL.AutofacModules;
 using BLL.Config;
 using BLL.DataAccess;
 using BLL.Entities;
@@ -12,6 +14,7 @@ using BLL.Managers;
 using BLL.Services;
 using BLL.Wrappers;
 using DAL;
+using DAL.AutofacModules;
 using DAL.Context;
 using DAL.Finder;
 using FluentValidation.AspNetCore;
@@ -53,21 +56,15 @@ namespace API
             },ServiceLifetime.Scoped);
             services.AddIdentity<User, Role>(options =>
                 {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 6;
                 })
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
             services.AddScoped(x => x.GetRequiredService<ApplicationContext>().Books);
-            services.AddScoped<UserManager<User>>();
-            services.AddScoped<ISignInManager, SignInManagerWrapper>();
-            services.AddScoped<IUserManager, UserManagerWrapper>();
-            services.AddScoped<IRoleManager, RoleManagerWrapper>();
-            services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IBookService, BookService>();
-            services.AddScoped<IRepository<Book>, Repository<Book>>();
-            services.AddScoped<IBookFinder, BookFinder>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<AuthOptions>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
@@ -96,7 +93,6 @@ namespace API
 
                         // установка ключа безопасности
                         IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-                        // валидация ключа безопасности
                         ValidateIssuerSigningKey = true,
                     };
                 });
@@ -112,6 +108,12 @@ namespace API
                             .AllowAnyHeader();
                     });
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new BLLModules());
+            builder.RegisterModule(new DALModules());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
