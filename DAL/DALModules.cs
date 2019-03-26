@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Autofac;
+﻿using Autofac;
 using BLL.Entities;
 using DAL.Context;
-using DAL.Finder;
-using Microsoft.EntityFrameworkCore;
 
-namespace DAL.AutofacModules
+namespace DAL
 {
     public class DALModules : Module
     {

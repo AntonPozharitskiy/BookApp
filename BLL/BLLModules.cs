@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Autofac;
-using BLL.Entities;
-using BLL.Managers;
-using BLL.Services;
-using BLL.Wrappers;
-using Microsoft.AspNetCore.Identity;
+﻿using Autofac;
 
-namespace BLL.AutofacModules
+namespace BLL
 {
     public class BLLModules : Module
     {

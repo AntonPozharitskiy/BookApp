@@ -5,7 +5,6 @@ using API.Mapping;
 using API.Validators;
 using Autofac;
 using BLL;
-using BLL.AutofacModules;
 using BLL.Config;
 using BLL.DataAccess;
 using BLL.Entities;
@@ -14,7 +13,6 @@ using BLL.Managers;
 using BLL.Services;
 using BLL.Wrappers;
 using DAL;
-using DAL.AutofacModules;
 using DAL.Context;
 using DAL.Finder;
 using FluentValidation.AspNetCore;
@@ -112,8 +110,8 @@ namespace API
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new BLLModules());
-            builder.RegisterModule(new DALModules());
+            builder.RegisterModule<BLLModules>();
+            builder.RegisterModule<DALModules>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
