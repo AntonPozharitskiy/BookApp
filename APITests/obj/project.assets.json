@@ -4001,7 +4001,8 @@
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
           "NLog": "4.6.0",
-          "NLog.Web.AspNetCore": "4.8.1"
+          "NLog.Web.AspNetCore": "4.8.1",
+          "System.Data.SqlClient": "4.6.0"
         },
         "compile": {
           "bin/placeholder/API.dll": {}

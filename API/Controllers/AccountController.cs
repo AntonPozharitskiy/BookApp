@@ -33,35 +33,27 @@ namespace API.Controllers
         [Route("Register")]
         public async Task<ActionResult> Register(RequestRegisterUserModel registerModel)
         {
-            _logger.LogInformation("Register method started...");
-            try
-            {
-                var mappedUser = Mapper.Map<RequestRegisterUserModel, User>(registerModel);
-                mappedUser.Id = Guid.NewGuid();
-                await _userManager.CreateUser(mappedUser, registerModel.Password);
-                await _userManager.AddToRole(mappedUser, "User");
-                _logger.LogInformation($"Register method finish successfully. Added new user: id - {mappedUser.Id}, Email - {mappedUser.Email}, Password - {registerModel.Password}");
-                return Ok(mappedUser);
-            }
-            catch (Exception e)
-            {
-                _logger.LogInformation($"Register {registerModel.Email} failed with exception: \n", e.Message);
-            }
-
-            return BadRequest(registerModel);
+            _logger.LogInformation($"Register method called by {registerModel.Email} started...");
+            var mappedUser = Mapper.Map<RequestRegisterUserModel, User>(registerModel);
+            mappedUser.Id = Guid.NewGuid();
+            await _userManager.CreateUser(mappedUser, registerModel.Password);
+            await _userManager.AddToRole(mappedUser, "User");
+            _logger.LogInformation($"Register method finish successfully. Added new user: id - {mappedUser.Id}, Email - {mappedUser.Email}, Password - {registerModel.Password}");
+            return Ok(mappedUser);
         }
 
         [HttpPost]
         [Route("Login")]
-        public async Task<object> Authenticate(RequestAuthorizeUserModel loginModel)
+        public object Authenticate(RequestAuthorizeUserModel loginModel)
         {
-            //User currentUser = await _userManager.GetUserByEmail(loginModel.Email);
-            //var passconfirm = await _signInManager.CheckPassword(currentUser, loginModel.Password, false);
+            _logger.LogInformation($"Login method called by {loginModel.Email} started...");
             var authToken = new
             {
                 accessToken = _tokenService.GetAuthenticationToken(loginModel.Email),
                 userEmail = loginModel.Email
+
             };
+            _logger.LogInformation($"Login method for user {loginModel.Email} finish successfully!");
             return authToken;
         }
 
@@ -70,6 +62,7 @@ namespace API.Controllers
         public async Task Logout()
         {
             await _signInManager.Logout();
+            _logger.LogInformation("User log out...");
         }
     }
 }

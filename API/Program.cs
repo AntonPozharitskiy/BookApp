@@ -20,7 +20,7 @@ namespace API
             catch (Exception ex)
             {
                 //NLog: catch setup errors
-                logger.Error("Stopped program because of exception: \n", ex.Message);
+                logger.Error("Stopped program because of exception: \n"+ ex.Message);
                 throw;
             }
             finally
