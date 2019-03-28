@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BLL.Entities;
 using BLL.Managers;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
@@ -15,12 +16,14 @@ namespace API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly ILogger<AccountController> _logger;
         private readonly ISignInManager _signInManager;
         private readonly IUserManager _userManager;
         private readonly ITokenService _tokenService;
 
-        public AccountController(ISignInManager signInManager, IUserManager userManager, ITokenService tokenService)
+        public AccountController(ISignInManager signInManager, IUserManager userManager, ITokenService tokenService, ILogger<AccountController> logger)
         {
+            _logger = logger;
             _signInManager = signInManager;
             _userManager = userManager;
             _tokenService = tokenService;
@@ -28,27 +31,36 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<ActionResult> Register(RequestUserModel registerModel)
+        public async Task<ActionResult> Register(RequestRegisterUserModel registerModel)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            var mappedUser = Mapper.Map<RequestUserModel, User>(registerModel);
-            mappedUser.Id = Guid.NewGuid();
-            await _userManager.CreateUser(mappedUser, registerModel.Password);
-            await _userManager.AddToRole(mappedUser, "User");
-            return Ok(mappedUser);
+            _logger.LogInformation("Register method started...");
+            try
+            {
+                var mappedUser = Mapper.Map<RequestRegisterUserModel, User>(registerModel);
+                mappedUser.Id = Guid.NewGuid();
+                await _userManager.CreateUser(mappedUser, registerModel.Password);
+                await _userManager.AddToRole(mappedUser, "User");
+                _logger.LogInformation($"Register method finish successfully. Added new user: id - {mappedUser.Id}, Email - {mappedUser.Email}, Password - {registerModel.Password}");
+                return Ok(mappedUser);
+            }
+            catch (Exception e)
+            {
+                _logger.LogInformation($"Register {registerModel.Email} failed with exception: \n", e.Message);
+            }
+
+            return BadRequest(registerModel);
         }
 
         [HttpPost]
         [Route("Login")]
-        public async Task<object> Authenticate(RequestUserModel loginModel)
+        public async Task<object> Authenticate(RequestAuthorizeUserModel loginModel)
         {
-            User currentUser = Mapper.Map<RequestUserModel, User>(loginModel);
-            var passconfirm = await _signInManager.CheckPassword(currentUser, loginModel.Password, false);
+            //User currentUser = await _userManager.GetUserByEmail(loginModel.Email);
+            //var passconfirm = await _signInManager.CheckPassword(currentUser, loginModel.Password, false);
             var authToken = new
             {
-                accessToken = _tokenService.GetAuthenticationToken(currentUser.Email),
-                userEmail = currentUser.Email,
-                id = currentUser.Id
+                accessToken = _tokenService.GetAuthenticationToken(loginModel.Email),
+                userEmail = loginModel.Email
             };
             return authToken;
         }

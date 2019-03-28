@@ -26,7 +26,7 @@ namespace APITests
         [Fact]
         public async Task RegisterNewUser()
         {
-            RequestUserModel userModel = new RequestUserModel { Email = "toxa@gmail.com", Password = "Peijer123_" };
+            RequestRegisterUserModel userModel = new RequestRegisterUserModel { Email = "toxa@gmail.com", Password = "Peijer123_" };
             var result = await controller.Register(userModel);
             
             Assert.IsAssignableFrom<ActionResult>(result);
@@ -37,7 +37,7 @@ namespace APITests
         [Fact]
         public async Task Authenticate()
         {
-            RequestUserModel userLoginModel = new RequestUserModel(){Email = "microchel11@efrem.com", Password = "Confirmed123$"};
+            RequestRegisterUserModel userLoginModel = new RequestRegisterUserModel(){Email = "microchel11@efrem.com", Password = "Confirmed123$"};
             var result = await controller.Authenticate(userLoginModel);
             Assert.NotNull(result);
             mockedTokenService.Verify(user => user.GetAuthenticationToken(userLoginModel.Email), Times.Once);

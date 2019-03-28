@@ -43,7 +43,8 @@ namespace API
         {
             services.AddMvc().AddFluentValidation(validator =>
                 {
-                    validator.RegisterValidatorsFromAssemblyContaining<UserValidator>();
+                    validator.RegisterValidatorsFromAssemblyContaining<RegisterUserValidator>();
+                    validator.RegisterValidatorsFromAssemblyContaining<AuthenticateUserValidator>();
                     validator.RegisterValidatorsFromAssemblyContaining<BookValidator>();
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

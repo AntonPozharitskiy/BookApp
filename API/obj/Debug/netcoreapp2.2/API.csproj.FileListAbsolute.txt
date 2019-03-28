@@ -17,3 +17,4 @@ D:\BookApp\BookApp\API\obj\Debug\netcoreapp2.2\API.RazorTargetAssemblyInfo.cache
 D:\BookApp\BookApp\API\obj\Debug\netcoreapp2.2\API.csproj.CopyComplete
 D:\BookApp\BookApp\API\obj\Debug\netcoreapp2.2\API.dll
 D:\BookApp\BookApp\API\obj\Debug\netcoreapp2.2\API.pdb
+D:\BookApp\BookApp\API\bin\Debug\netcoreapp2.2\NLog.config

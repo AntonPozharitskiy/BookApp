@@ -12,7 +12,7 @@ namespace API.Mapping
         {
             var config = new MapperConfigurationExpression();
 
-            config.CreateMap<RequestUserModel, User>()
+            config.CreateMap<RequestRegisterUserModel, User>()
                 .ForMember(x => x.UserName, opt => opt.MapFrom(src => src.Email))
                 .ForMember(x => x.Email, opt => opt.MapFrom(src => src.Email))
                 .ForAllOtherMembers(x => x.Ignore());
