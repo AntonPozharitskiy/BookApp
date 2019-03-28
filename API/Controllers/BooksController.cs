@@ -38,20 +38,20 @@ namespace API.Controllers
         public async Task<Book[]> GetUserBooks()
         {
             var user = await GetCurrentAuthor();
-            _logger.LogInformation($"Trying to get {user.UserName} books...");
+            _logger.LogTrace($"Trying to get {user.UserName} books...");
             IEnumerable<Book> userBookList = _service.GetAll(user.Id);
             Book[] bookArray = userBookList.ToArray();
-            _logger.LogInformation($"{user.UserName} successfully got his books!");
+            _logger.LogTrace($"{user.UserName} successfully got his books!");
             return bookArray;
         }
 
         public async Task<User> GetCurrentAuthor()
         {
-            _logger.LogInformation($"Trying to get current user...");
+            _logger.LogTrace($"Trying to get current user...");
             var identity = (ClaimsIdentity) this.User.Identity;
             var userEmail = identity.FindFirst(JwtRegisteredClaimNames.Sub).Value;
             var user = await _userManager.GetUserByEmail(userEmail);
-            _logger.LogInformation($"Current user is {user.UserName}");
+            _logger.LogTrace($"Current user is {user.UserName}");
             return user;
         }
 
@@ -69,11 +69,11 @@ namespace API.Controllers
         public async Task<ActionResult<object>> UpdateBook(RequestBookModel book)
         {
             var user = await GetCurrentAuthor();
-            _logger.LogInformation($"{user.UserName} try to update book {book.Id}...");
+            _logger.LogTrace($"{user.UserName} try to update book {book.Id}...");
             Book bookToUpdate = _service.GetBook(book.Id);
             Mapper.Map(book, bookToUpdate);
             _service.Update(bookToUpdate);
-            _logger.LogInformation($"{user.UserName} successfully update book {book.Id}");
+            _logger.LogTrace($"{user.UserName} successfully update book {book.Id}");
             return bookToUpdate;
         }
         
@@ -82,12 +82,12 @@ namespace API.Controllers
         public async Task<IActionResult> AddBook(RequestBookModel book)
         {
             var user = await GetCurrentAuthor();
-            _logger.LogInformation($"AddBook method called by {user.UserName}.");
+            _logger.LogTrace($"AddBook method called by {user.UserName}.");
             Book newBook = Mapper.Map<RequestBookModel, Book>(book);
             newBook.AuthorId = user.Id.ToString();
             newBook.DateOfRelease = DateTime.Now;
             _service.Create(newBook);
-            _logger.LogInformation($"{user.UserName} successfully create a book!");
+            _logger.LogTrace($"{user.UserName} successfully create a book!");
             return Ok(newBook);
         }
         
@@ -96,10 +96,10 @@ namespace API.Controllers
         public async Task<int> DeleteBook(int id)
         {
             var user = await GetCurrentAuthor();
-            _logger.LogInformation($"DeleteBook method called by {user.UserName}.");
+            _logger.LogTrace($"DeleteBook method called by {user.UserName}.");
             Book bookToDelete = _service.GetBook(id);
             _service.Delete(bookToDelete);
-            _logger.LogInformation($"{user.UserName} successfully deleted book {id}");
+            _logger.LogTrace($"{user.UserName} successfully deleted book {id}");
             return id;
         }
     }

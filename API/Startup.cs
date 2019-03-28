@@ -25,6 +25,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using NLog;
 
 namespace API
 {
@@ -118,6 +119,7 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationContext context, IServiceProvider serviceProvider)
         {
+            GlobalDiagnosticsContext.Set("connectionString", "Data Source=ESW413;Initial Catalog=BookAppDb;Integrated Security=True;");
             app.Use(async (ctx, next) =>
             {
                 
@@ -138,7 +140,6 @@ namespace API
              app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
-           
             app.UseMvc(routes => { routes.MapRoute("default", "controller/action/{id}"); });
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)

@@ -33,12 +33,12 @@ namespace API.Controllers
         [Route("Register")]
         public async Task<ActionResult> Register(RequestRegisterUserModel registerModel)
         {
-            _logger.LogInformation($"Register method called by {registerModel.Email} started...");
+            _logger.LogTrace($"Register method called by {registerModel.Email} started...");
             var mappedUser = Mapper.Map<RequestRegisterUserModel, User>(registerModel);
             mappedUser.Id = Guid.NewGuid();
             await _userManager.CreateUser(mappedUser, registerModel.Password);
             await _userManager.AddToRole(mappedUser, "User");
-            _logger.LogInformation($"Register method finish successfully. Added new user: id - {mappedUser.Id}, Email - {mappedUser.Email}, Password - {registerModel.Password}");
+            _logger.LogTrace($"Register method finish successfully. Added new user: id - {mappedUser.Id}, Email - {mappedUser.Email}, Password - {registerModel.Password}");
             return Ok(mappedUser);
         }
 
@@ -46,14 +46,14 @@ namespace API.Controllers
         [Route("Login")]
         public object Authenticate(RequestAuthorizeUserModel loginModel)
         {
-            _logger.LogInformation($"Login method called by {loginModel.Email} started...");
+            _logger.LogTrace($"Login method called by {loginModel.Email} started...");
             var authToken = new
             {
                 accessToken = _tokenService.GetAuthenticationToken(loginModel.Email),
                 userEmail = loginModel.Email
 
             };
-            _logger.LogInformation($"Login method for user {loginModel.Email} finish successfully!");
+            _logger.LogTrace($"Login method for user {loginModel.Email} finish successfully!");
             return authToken;
         }
 
@@ -62,7 +62,7 @@ namespace API.Controllers
         public async Task Logout()
         {
             await _signInManager.Logout();
-            _logger.LogInformation("User log out...");
+            _logger.LogTrace("User log out...");
         }
     }
 }

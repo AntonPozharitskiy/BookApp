@@ -3,7 +3,9 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog;
 using NLog.Web;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace API
 {
@@ -11,6 +13,7 @@ namespace API
     {
         public static void Main(string[] args)
         {
+            GlobalDiagnosticsContext.Set("connectionString", "Data Source=ESW413;Initial Catalog=BookAppDb;Integrated Security=True;");
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {

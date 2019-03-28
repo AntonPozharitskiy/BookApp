@@ -8,6 +8,7 @@ using BLL.Managers;
 using BLL.Wrappers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -21,7 +22,9 @@ namespace APITests
 
         private static Mock<ITokenService> mockedTokenService = new Mock<ITokenService>();
 
-        public AccountController controller = new AccountController(mockedSignInManager.Object, mockedUserManager.Object, mockedTokenService.Object);
+        private static Mock<ILogger<AccountController>> mockedLogger = new Mock<ILogger<AccountController>>();
+
+        public AccountController controller = new AccountController(mockedSignInManager.Object, mockedUserManager.Object, mockedTokenService.Object, mockedLogger.Object);
 
         [Fact]
         public async Task RegisterNewUser()
@@ -35,12 +38,13 @@ namespace APITests
         }
 
         [Fact]
-        public async Task Authenticate()
+        public object Authenticate()
         {
-            RequestRegisterUserModel userLoginModel = new RequestRegisterUserModel(){Email = "microchel11@efrem.com", Password = "Confirmed123$"};
-            var result = await controller.Authenticate(userLoginModel);
+            RequestAuthorizeUserModel userLoginModel = new RequestAuthorizeUserModel(){Email = "microchel11@efrem.com", Password = "Confirmed123$"};
+            var result = controller.Authenticate(userLoginModel);
             Assert.NotNull(result);
             mockedTokenService.Verify(user => user.GetAuthenticationToken(userLoginModel.Email), Times.Once);
+            return result;
         }
 
         [Fact]

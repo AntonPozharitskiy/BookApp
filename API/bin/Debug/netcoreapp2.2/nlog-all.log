@@ -1,0 +1,120 @@
+2019-03-28 15:37:58.3051||API.Program|DEBUG|init main 
+2019-03-28 15:38:00.6656||Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|INFO|User profile is available. Using 'C:\Users\Anton.Pazharytski\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-03-28 15:38:01.7257||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 DEBUG http://localhost:53045/  0 
+2019-03-28 15:38:01.7257||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 GET http://localhost:44311/   
+2019-03-28 15:38:01.7743||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 45.5162ms 200  
+2019-03-28 15:38:01.8715||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 145.1676ms 404  
+2019-03-28 15:38:18.6618||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 OPTIONS http://localhost:44311/Books/GetAll   
+2019-03-28 15:38:18.7102||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:18.7455||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 83.7167ms 204  
+2019-03-28 15:38:18.7905||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 GET http://localhost:44311/Books/GetAll application/json  
+2019-03-28 15:38:18.9480||Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler|INFO|Successfully validated the token. 
+2019-03-28 15:38:18.9718||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:18.9806||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executing endpoint 'API.Controllers.BooksController.GetUserBooks (API)' 
+2019-03-28 15:38:19.0553||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Route matched with {action = "GetUserBooks", controller = "Books"}. Executing action API.Controllers.BooksController.GetUserBooks (API) 
+2019-03-28 15:38:19.0704||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:19.1010||Microsoft.AspNetCore.Authorization.DefaultAuthorizationService|INFO|Authorization was successful. 
+2019-03-28 15:38:19.1570||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executing action method API.Controllers.BooksController.GetUserBooks (API) - Validation state: Valid 
+2019-03-28 15:38:19.9690||Microsoft.EntityFrameworkCore.Infrastructure|INFO|Entity Framework Core 2.2.3-servicing-35854 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+2019-03-28 15:38:20.3730||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (24ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 
+2019-03-28 15:38:20.5830||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (1ms) [Parameters=[@__ToString_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT [x].[Id], [x].[AuthorId], [x].[Content], [x].[DateOfRelease], [x].[Title]
+FROM [Books] AS [x]
+WHERE [x].[AuthorId] = @__ToString_0 
+2019-03-28 15:38:20.6734||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action method API.Controllers.BooksController.GetUserBooks (API), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1502.4537ms. 
+2019-03-28 15:38:20.6913||Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|INFO|Executing ObjectResult, writing value of type 'BLL.Entities.Book[]'. 
+2019-03-28 15:38:20.7299||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action API.Controllers.BooksController.GetUserBooks (API) in 1660.1739ms 
+2019-03-28 15:38:20.7299||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executed endpoint 'API.Controllers.BooksController.GetUserBooks (API)' 
+2019-03-28 15:38:20.7581||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 1991.9532ms 200 application/json; charset=utf-8 
+2019-03-28 15:38:22.2523||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 OPTIONS http://localhost:44311/Books/Create   
+2019-03-28 15:38:22.2523||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:22.2655||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 13.2492ms 204  
+2019-03-28 15:38:22.2854||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 POST http://localhost:44311/Books/Create application/json 71 
+2019-03-28 15:38:22.2938||Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler|INFO|Successfully validated the token. 
+2019-03-28 15:38:22.2938||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:22.2938||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executing endpoint 'API.Controllers.BooksController.AddBook (API)' 
+2019-03-28 15:38:22.3394||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Route matched with {action = "AddBook", controller = "Books"}. Executing action API.Controllers.BooksController.AddBook (API) 
+2019-03-28 15:38:22.3394||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:22.3394||Microsoft.AspNetCore.Authorization.DefaultAuthorizationService|INFO|Authorization was successful. 
+2019-03-28 15:38:22.5055||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executing action method API.Controllers.BooksController.AddBook (API) with arguments (API.Requests.RequestBookModel) - Validation state: Valid 
+2019-03-28 15:38:22.5173||Microsoft.EntityFrameworkCore.Infrastructure|INFO|Entity Framework Core 2.2.3-servicing-35854 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+2019-03-28 15:38:22.5326||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 
+2019-03-28 15:38:22.7183||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Books] ([AuthorId], [Content], [DateOfRelease], [Title])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [Books]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity(); 
+2019-03-28 15:38:22.7512||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action method API.Controllers.BooksController.AddBook (API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 237.6535ms. 
+2019-03-28 15:38:22.7512||Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|INFO|Executing ObjectResult, writing value of type 'BLL.Entities.Book'. 
+2019-03-28 15:38:22.7645||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action API.Controllers.BooksController.AddBook (API) in 418.139ms 
+2019-03-28 15:38:22.7645||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executed endpoint 'API.Controllers.BooksController.AddBook (API)' 
+2019-03-28 15:38:22.7645||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 487.0247ms 200 application/json; charset=utf-8 
+2019-03-28 15:38:26.8028||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 OPTIONS http://localhost:44311/Books/Update   
+2019-03-28 15:38:26.8028||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:26.8028||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 4.3887ms 204  
+2019-03-28 15:38:26.8331||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 POST http://localhost:44311/Books/Update application/json 171 
+2019-03-28 15:38:26.8331||Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler|INFO|Successfully validated the token. 
+2019-03-28 15:38:26.8404||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:26.8561||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executing endpoint 'API.Controllers.BooksController.UpdateBook (API)' 
+2019-03-28 15:38:26.8780||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Route matched with {action = "UpdateBook", controller = "Books"}. Executing action API.Controllers.BooksController.UpdateBook (API) 
+2019-03-28 15:38:26.8780||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:26.8780||Microsoft.AspNetCore.Authorization.DefaultAuthorizationService|INFO|Authorization was successful. 
+2019-03-28 15:38:26.8922||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executing action method API.Controllers.BooksController.UpdateBook (API) with arguments (API.Requests.RequestBookModel) - Validation state: Valid 
+2019-03-28 15:38:26.9109||Microsoft.EntityFrameworkCore.Infrastructure|INFO|Entity Framework Core 2.2.3-servicing-35854 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+2019-03-28 15:38:26.9109||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 
+2019-03-28 15:38:26.9321||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [x].[Id], [x].[AuthorId], [x].[Content], [x].[DateOfRelease], [x].[Title]
+FROM [Books] AS [x]
+WHERE [x].[Id] = @__id_0 
+2019-03-28 15:38:26.9542||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (4ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Books] SET [Title] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT; 
+2019-03-28 15:38:26.9542||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action method API.Controllers.BooksController.UpdateBook (API), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 53.5275ms. 
+2019-03-28 15:38:26.9727||Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|INFO|Executing ObjectResult, writing value of type 'BLL.Entities.Book'. 
+2019-03-28 15:38:26.9727||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action API.Controllers.BooksController.UpdateBook (API) in 93.7711ms 
+2019-03-28 15:38:26.9833||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executed endpoint 'API.Controllers.BooksController.UpdateBook (API)' 
+2019-03-28 15:38:26.9833||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 155.5533ms 200 application/json; charset=utf-8 
+2019-03-28 15:38:28.9465||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 OPTIONS http://localhost:44311/Books/Delete/259   
+2019-03-28 15:38:28.9526||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:28.9526||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 9.215ms 204  
+2019-03-28 15:38:28.9704||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request starting HTTP/1.1 POST http://localhost:44311/Books/Delete/259 application/json 3 
+2019-03-28 15:38:28.9885||Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler|INFO|Successfully validated the token. 
+2019-03-28 15:38:28.9885||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:28.9885||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executing endpoint 'API.Controllers.BooksController.DeleteBook (API)' 
+2019-03-28 15:38:29.0057||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Route matched with {action = "DeleteBook", controller = "Books"}. Executing action API.Controllers.BooksController.DeleteBook (API) 
+2019-03-28 15:38:29.0057||Microsoft.AspNetCore.Cors.Infrastructure.CorsService|INFO|CORS policy execution successful. 
+2019-03-28 15:38:29.0057||Microsoft.AspNetCore.Authorization.DefaultAuthorizationService|INFO|Authorization was successful. 
+2019-03-28 15:38:29.0166||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executing action method API.Controllers.BooksController.DeleteBook (API) with arguments (259) - Validation state: Valid 
+2019-03-28 15:38:29.0372||Microsoft.EntityFrameworkCore.Infrastructure|INFO|Entity Framework Core 2.2.3-servicing-35854 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+2019-03-28 15:38:29.0372||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 
+2019-03-28 15:38:29.0442||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [x].[Id], [x].[AuthorId], [x].[Content], [x].[DateOfRelease], [x].[Title]
+FROM [Books] AS [x]
+WHERE [x].[Id] = @__id_0 
+2019-03-28 15:38:29.0442||Microsoft.EntityFrameworkCore.Database.Command|INFO|Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [Books]
+WHERE [Id] = @p0;
+SELECT @@ROWCOUNT; 
+2019-03-28 15:38:29.0731||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action method API.Controllers.BooksController.DeleteBook (API), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 38.4349ms. 
+2019-03-28 15:38:29.0747||Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|INFO|Executing ObjectResult, writing value of type 'System.Int32'. 
+2019-03-28 15:38:29.0747||Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|INFO|Executed action API.Controllers.BooksController.DeleteBook (API) in 71.1691ms 
+2019-03-28 15:38:29.0747||Microsoft.AspNetCore.Routing.EndpointMiddleware|INFO|Executed endpoint 'API.Controllers.BooksController.DeleteBook (API)' 
+2019-03-28 15:38:29.0747||Microsoft.AspNetCore.Hosting.Internal.WebHost|INFO|Request finished in 112.8654ms 200 application/json; charset=utf-8 
+2019-03-28 15:38:29.0904||Microsoft.AspNetCore.Server.Kestrel|INFO|Connection id "0HLLJF8RM93RA", Request id "0HLLJF8RM93RA:00000005": the application completed without reading the entire request body. 
