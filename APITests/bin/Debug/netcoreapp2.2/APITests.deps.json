@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "5d19c0670f8cbcba7056199a01741ba817a41805"
+    "signature": "4b84f24ca74512ff3671d250f4b6fa236844080e"
   },
   "compilationOptions": {},
   "targets": {
@@ -1593,6 +1593,12 @@
           }
         }
       },
+      "NLog.Config/4.6.0": {
+        "dependencies": {
+          "NLog": "4.6.0",
+          "NLog.Schema": "4.6.0"
+        }
+      },
       "NLog.Extensions.Logging/1.4.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "2.2.0",
@@ -1605,6 +1611,7 @@
           }
         }
       },
+      "NLog.Schema/4.6.0": {},
       "NLog.Web.AspNetCore/4.8.1": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
@@ -3012,6 +3019,8 @@
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
           "NLog": "4.6.0",
+          "NLog.Config": "4.6.0",
+          "NLog.Extensions.Logging": "1.4.0",
           "NLog.Web.AspNetCore": "4.8.1",
           "System.Data.SqlClient": "4.6.0",
           "System.IdentityModel.Tokens.Jwt": "5.3.0.0"
@@ -3808,12 +3817,26 @@
       "path": "nlog/4.6.0",
       "hashPath": "nlog.4.6.0.nupkg.sha512"
     },
+    "NLog.Config/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7ZKFwTic2vhqVxBpTKyRYhmKg8wbrwQo1xo1ebKUNrm8RWtZUz0hDyn184YZTPG6H0uWvxhg/U0kboUWoDcAzA==",
+      "path": "nlog.config/4.6.0",
+      "hashPath": "nlog.config.4.6.0.nupkg.sha512"
+    },
     "NLog.Extensions.Logging/1.4.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-XughK7kRM1b+IuG4bZEpShHLweTCRNQb4kDUMsiob03QVpnacgcis6wDS0KlyXYaF/3Itid5b8+VbTBeP4WKhA==",
       "path": "nlog.extensions.logging/1.4.0",
       "hashPath": "nlog.extensions.logging.1.4.0.nupkg.sha512"
+    },
+    "NLog.Schema/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RO9zAfdTrviAttY4qVsAh+Mb+znfkw2Tq+XMk4QK7Z6g/e+7RcoyNaYARmyGJ/HgAnLqsq48U22czJkz0A4t7A==",
+      "path": "nlog.schema/4.6.0",
+      "hashPath": "nlog.schema.4.6.0.nupkg.sha512"
     },
     "NLog.Web.AspNetCore/4.8.1": {
       "type": "package",
@@ -3986,7 +4009,7 @@
     "System.Buffers/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xpHYjjtyTEpzMwtSQBWdVc3dPjLdQtvyUg6fBlBqcLl1r2Y7gDG/W/enAYOB98nG3oD3Q153Y2FBO8JDWd+0Xw==",
+      "sha512": "sha512-pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A==",
       "path": "system.buffers/4.5.0",
       "hashPath": "system.buffers.4.5.0.nupkg.sha512"
     },
